@@ -7,5 +7,9 @@ export async function findUser(email: string) {
 }
 
 export async function create(user:userInput) {
+    await prisma.users.create({ data: user })
+}
+
+export async function connectUser(user:userInput) {
     
 }
