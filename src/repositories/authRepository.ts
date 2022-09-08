@@ -1,4 +1,4 @@
-import { prisma } from "../database.js";
+import { prisma } from "../database";
 import { userInput } from "../types/userTypes";
 
 export async function findUser(email: string) {

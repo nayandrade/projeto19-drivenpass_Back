@@ -1,6 +1,5 @@
 import * as authRepository from "../repositories/authRepository";
 import { userInput } from "../types/userTypes";
-import { users } from "@prisma/client";
 
 export async function createtUser(user: userInput) {
   const hasUser = await findUser(user.email);
