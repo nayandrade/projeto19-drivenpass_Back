@@ -4,6 +4,6 @@ import jwtMiddleware from "../middlewares/jwtMiddleware"
 
 const credentialsRouter = Router();
 
-credentialsRouter.post("/credentials", createCredential);
+credentialsRouter.post("/credentials", jwtMiddleware, createCredential);
 
 export default credentialsRouter;

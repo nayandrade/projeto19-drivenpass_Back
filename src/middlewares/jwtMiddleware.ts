@@ -14,7 +14,7 @@ export default async function jwtMiddleware(req: Request, res: Response, next: N
   }
 
   try {
-    const SECRET = String(process.env.JWT_SECRET);
+    const SECRET = String(process.env.JWT_KEY);
     const decoded = jwt.verify(token, SECRET);
     if (!decoded) {
       throw {
@@ -22,9 +22,11 @@ export default async function jwtMiddleware(req: Request, res: Response, next: N
         message: "No token provided, please login to continue",
       };
     }
-    console.log(decoded);
-    // const id = decoded.id;
-    // res.locals = { id };
+
+    const { id } = decoded as { id: number };
+    console.log(id)
+    res.locals.id = id;
+
   } catch (error) {
     res
       .status(401)

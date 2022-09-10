@@ -6,10 +6,6 @@ export async function findUser(email: string) {
   return result;
 }
 
-export async function create(user:userInput) {
-    await prisma.users.create({ data: user })
-}
-
-export async function connectUser(user:userInput) {
-    
+export async function create(user: userInput) {
+  await prisma.users.create({ data: user });
 }
