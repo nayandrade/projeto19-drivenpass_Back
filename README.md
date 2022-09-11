@@ -35,6 +35,7 @@ O Body da requisição deve ser feito no seguinte formato:
   "password": "senha de cadastro do usuário" //string
 }
 ```
+- a requisição responderá com o token de acesso.
 
 # Rotas de credenciais:
 
