@@ -6,7 +6,7 @@
 
 - Todos os títulos de cada rota são únicos para aquele usuário, porém outros usuários também podem utilizar aquele mesmo título
 
-- Toda a autenticação foi feita com jwt
+- Toda a autenticação foi feita com [jwt](https://www.npmjs.com/package/jsonwebtoken)
 
 # Rotas de criação e autenticação de usuários:
 
@@ -277,7 +277,7 @@ A resposta da requisição virá no seguinte formato:
 ]
 ```
 
-## Rota <span style="color:yellow"> **GET** </span>/cards/:id
+## Rota <span style="color:yellow"> **GET** </span>/wifi/:id
 
 Essa é uma rota autenticada com um header http do tipo "Authorization". Sua função é listar apenas o acesso de wi-fi solicitado.
 
