@@ -1,5 +1,13 @@
 # projeto19-drivenpass
 
+# Observações gerais:
+
+- Todas as informações sensíveis, como senha e informações de cartão de crédito serão criptografadas
+
+- Todos os títulos de cada rota são únicos para aquele usuário, porém outros usuários também podem utilizar aquele mesmo título
+
+- Toda a autenticação foi feita com jwt
+
 # Rotas de criação e autenticação de usuários:
 
 ## Rota <span style="color:yellow"> **POST** </span>/signup
@@ -189,10 +197,10 @@ A resposta da requisição virá no seguinte formato:
     "id": "identificador do cartão",
     "userId": "identificador do usuário",
     "number": "número impresso no cartão, com 16 caracteres numéricos",
-    "password": "senha de acesso do cartão",
+    "password": "senha de acesso do cartão descriptografada",
     "title": "título único do cartão",
     "cardName": "nome de acesso impresso no cartão",
-    "cvv": "card verification value impresso no cartão, com 3 caracteres numéricos",
+    "cvv": "card verification value descriptografado",
     "expirationDate": "data de expiração impresso no cartão no formato MM/AA ou MM-AA ou MM.AA",
     "isVirtual": "true caso o cartão seja virtual",
     "type": "tipo do cartão, sendo válido apenas 'credit', 'debt' ou 'both'"
@@ -213,10 +221,10 @@ A resposta da requisição virá no seguinte formato:
   "id": "identificador do cartão",
   "userId": "identificador do usuário",
   "number": "número impresso no cartão, com 16 caracteres numéricos",
-  "password": "senha de acesso do cartão",
+  "password": "senha de acesso do cartão descriptografada",
   "title": "título único do cartão",
   "cardName": "nome de acesso impresso no cartão",
-  "cvv": "card verification value impresso no cartão, com 3 caracteres numéricos",
+  "cvv": "card verification value descriptografado",
   "expirationDate": "data de expiração impresso no cartão no formato MM/AA ou MM-AA ou MM.AA",
   "isVirtual": "true caso o cartão seja virtual",
   "type": "tipo do cartão, sendo válido apenas 'credit', 'debt' ou 'both'"
@@ -228,6 +236,70 @@ A resposta da requisição virá no seguinte formato:
 Essa é uma rota autenticada com um header http do tipo "Authorization". Sua função é excluir o cartão solicitado.
 
 O "id" passado nesta rota é o id da cartão, criado na rota **POST** mencionada anteriormente.
+
+A resposta da requisição virá no seguinte formato:
+
+```json
+OK
+```
+
+# Rotas de wi-fi's:
+
+## Rota <span style="color:yellow"> **POST** </span>/wifi
+
+Essa é uma rota autenticada com um header http do tipo "Authorization". Sua função é criar um novo wi-fi.
+
+O Body da requisição deve ser feito no seguinte formato:
+
+```json
+{
+  "title": "título único do wi-fi", //string
+  "username": "nome de acesso para login no wi-fi", //string
+  "password": "senha de acesso do wi-fi" //string
+}
+```
+
+## Rota <span style="color:yellow"> **GET** </span>/wifi
+
+Essa é uma rota autenticada com um header http do tipo "Authorization". Sua função é listar todos os acessos de wi-fi's cadastrados pelo usuário.
+
+A resposta da requisição virá no seguinte formato:
+
+```json
+[
+  {
+    "id": "identificador do cartão",
+    "userId": "identificador do usuário",
+    "title": "título único do wi-fi",
+    "username": "nome de acesso para login no wi-fi",
+    "password": "senha de acesso do wi-fi descriptografada"
+  }
+]
+```
+
+## Rota <span style="color:yellow"> **GET** </span>/cards/:id
+
+Essa é uma rota autenticada com um header http do tipo "Authorization". Sua função é listar apenas o acesso de wi-fi solicitado.
+
+O "id" passado nesta rota é o id do wi-fi, criado na rota **POST** mencionada anteriormente.
+
+A resposta da requisição virá no seguinte formato:
+
+```json
+  {
+    "id": "identificador do cartão",
+    "userId": "identificador do usuário",
+    "title": "título único do wi-fi",
+    "username": "nome de acesso para login no wi-fi",
+    "password": "senha de acesso do wi-fi descriptografada"
+  }
+```
+
+## Rota <span style="color:yellow"> **DELETE** </span>/wifi/:id
+
+Essa é uma rota autenticada com um header http do tipo "Authorization". Sua função é excluir o acesso de wifi solicitado.
+
+O "id" passado nesta rota é o id do wi-fi, criado na rota **POST** mencionada anteriormente.
 
 A resposta da requisição virá no seguinte formato:
 
