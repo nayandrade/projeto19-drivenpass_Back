@@ -27,7 +27,7 @@ export const cardSchema = joi.object<cardsBody>({
   password: joi.string().required(),
   title: joi.string().required(),
   cardName: joi.string().required(),
-  cvv: joi.string().length(3).required(),
+  cvv: joi.string().regex(/^[0-9]{3}$/).length(3).required(),
   expirationDate: joi.string().regex(/^(0[1-9]|1[012])[- /.]([2-9])\d$/).required(),
   isVirtual: joi.boolean().required(),
   type: joi.string().valid("credit", "debt", "both").required(),
