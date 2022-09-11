@@ -22,12 +22,13 @@ export const safeNotesSchema = joi.object<safeNotesInput>({
 });
 
 export const cardSchema = joi.object<cardsBody>({
-  number: joi.string().length(16).required(),
+  number: joi.string().regex(/^[0-9]{16}$/).length(16).required(),
   password: joi.string().required(),
   title: joi.string().required(),
   cardName: joi.string().required(),
   cvv: joi.string().length(3).required(),
-  expirationDate: joi.date().greater('now').required(),
-  isVirtual: joi.boolean(),
+  expirationDate: joi.string().regex(/^(0[1-9]|1[012])[- /.]([2-9])\d$/).required(),
+  isVirtual: joi.boolean().required(),
   type: joi.string().valid("credit", "debt", "both").required(),
 });
+
