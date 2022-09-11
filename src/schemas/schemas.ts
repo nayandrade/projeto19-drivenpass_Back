@@ -3,6 +3,7 @@ import { userInput } from "../types/userTypes";
 import { credentialsBody } from "../types/credentialsTypes";
 import { safeNotesInput } from "../types/safeNotesTypes";
 import { cardsBody } from "../types/cardTypes";
+import { wifiBody } from "../types/wifiTypes";
 
 export const authSchema = joi.object<userInput>({
   email: joi.string().email().required(),
@@ -32,3 +33,9 @@ export const cardSchema = joi.object<cardsBody>({
   type: joi.string().valid("credit", "debt", "both").required(),
 });
 
+
+export const wifiSchema = joi.object<wifiBody>({
+  title: joi.string().required(),
+  username: joi.string().required(),
+  password: joi.string().required(),
+});
