@@ -45,7 +45,6 @@ export async function connectUser(user: userInput) {
   const token = jwt.sign({ id }, String(process.env.JWT_KEY), {
     expiresIn: process.env.TOKEN_DURATION,
   });
-  console.log(process.env.JWT_KEY);
   return token;
 }
 

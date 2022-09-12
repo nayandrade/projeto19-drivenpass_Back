@@ -6,7 +6,7 @@ export default async function jwtMiddleware(req: Request, res: Response, next: N
   const token = authorization?.replace("Bearer ", "");
 
   if (!token) {
-    // return res.status(401).send("Access denied. No token provided.");
+
     throw {
       type: "not_found",
       message: "No token provided, please login to continue",
@@ -24,7 +24,6 @@ export default async function jwtMiddleware(req: Request, res: Response, next: N
     }
 
     const { id } = decoded as { id: number };
-    console.log(id)
     res.locals.id = id;
 
   } catch (error) {
